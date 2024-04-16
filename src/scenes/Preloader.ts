@@ -7,7 +7,8 @@ export class Preloader extends Phaser.Scene {
 
   // Load Assets
   preload() {
-
+  // Map
+  this.load.tilemapTiledJSON('tilemap', 'map/mapV1.json');
   };
   // Once loaded transition to main scene
   
