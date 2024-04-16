@@ -7,8 +7,8 @@ import { MainGame } from "./scenes/MainGame";
 
 const config: Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 1024,
-    height: 768,
+    width: 924,
+    height: 1056,
     parent: 'game-container',
     scale: {
         mode: Phaser.Scale.FIT,
