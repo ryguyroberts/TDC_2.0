@@ -1,13 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="33" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <editorsettings>
-  <export target="../map/mapV1.json" format="json"/>
+  <export target="../map/mapV1.1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="Grass Tileset" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="E:/Game stuff/TDCv2/Spire Tileset Assets/Foozle_2DT0012_Spire_Tileset_1/Tileset/PNGs/Grass Tileset.png" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="1025" name="Animated water tiles" tilewidth="32" tileheight="32" tilecount="1960" columns="140">
   <image source="E:/Game stuff/TDCv2/Spire Tileset Assets/Foozle_2DT0012_Spire_Tileset_1/Tileset/PNGs/Animated water tiles.png" width="4480" height="448"/>
+  <tile id="842">
+   <animation>
+    <frame tileid="842" duration="100"/>
+    <frame tileid="856" duration="100"/>
+    <frame tileid="870" duration="100"/>
+    <frame tileid="884" duration="100"/>
+    <frame tileid="898" duration="100"/>
+    <frame tileid="912" duration="100"/>
+    <frame tileid="926" duration="100"/>
+    <frame tileid="940" duration="100"/>
+    <frame tileid="954" duration="100"/>
+    <frame tileid="968" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="843">
+   <animation>
+    <frame tileid="843" duration="100"/>
+    <frame tileid="857" duration="100"/>
+    <frame tileid="871" duration="100"/>
+    <frame tileid="885" duration="100"/>
+    <frame tileid="899" duration="100"/>
+    <frame tileid="913" duration="100"/>
+    <frame tileid="927" duration="100"/>
+    <frame tileid="941" duration="100"/>
+    <frame tileid="955" duration="100"/>
+    <frame tileid="969" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="844">
+   <animation>
+    <frame tileid="844" duration="100"/>
+    <frame tileid="858" duration="100"/>
+    <frame tileid="872" duration="100"/>
+    <frame tileid="886" duration="100"/>
+    <frame tileid="900" duration="100"/>
+    <frame tileid="914" duration="100"/>
+    <frame tileid="928" duration="100"/>
+    <frame tileid="942" duration="100"/>
+    <frame tileid="956" duration="100"/>
+    <frame tileid="970" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="845">
+   <animation>
+    <frame tileid="845" duration="100"/>
+    <frame tileid="859" duration="100"/>
+    <frame tileid="873" duration="100"/>
+    <frame tileid="887" duration="100"/>
+    <frame tileid="901" duration="100"/>
+    <frame tileid="915" duration="100"/>
+    <frame tileid="929" duration="100"/>
+    <frame tileid="943" duration="100"/>
+    <frame tileid="957" duration="100"/>
+    <frame tileid="971" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="846">
+   <animation>
+    <frame tileid="846" duration="100"/>
+    <frame tileid="860" duration="100"/>
+    <frame tileid="874" duration="100"/>
+    <frame tileid="888" duration="100"/>
+    <frame tileid="902" duration="100"/>
+    <frame tileid="916" duration="100"/>
+    <frame tileid="930" duration="100"/>
+    <frame tileid="944" duration="100"/>
+    <frame tileid="958" duration="100"/>
+    <frame tileid="972" duration="100"/>
+   </animation>
+  </tile>
  </tileset>
  <layer id="1" name="Ground" width="30" height="33">
   <data encoding="csv">
@@ -26,9 +96,9 @@
 168,102,167,70,101,101,69,135,135,0,0,0,0,0,0,0,0,0,0,0,0,136,136,101,102,136,136,167,70,102,
 69,135,136,135,168,70,69,69,168,0,0,0,0,0,0,0,0,0,0,0,0,136,135,135,101,167,69,135,101,101,
 102,136,69,101,101,167,70,135,70,0,0,0,0,0,0,0,0,0,0,0,0,135,101,135,136,135,70,135,101,135,
-168,70,70,70,136,101,102,101,135,102,102,168,102,69,0,0,101,136,167,102,168,135,102,168,135,167,136,101,136,70,
-69,70,101,69,136,102,101,70,102,101,167,168,167,168,0,0,135,168,102,101,135,167,70,167,168,70,101,101,70,136,
-70,136,168,135,168,70,167,167,168,69,135,70,101,168,0,0,101,136,70,135,135,136,69,70,135,70,102,135,168,168,
+1736,1735,1736,1735,1736,1735,1736,1735,1736,1735,1736,1735,1736,1729,0,0,1734,1735,1736,1735,1736,1735,1736,1735,1736,1735,1736,1735,1736,1735,
+1867,1868,1869,1870,1871,1869,1867,1868,1869,1870,1871,1869,1868,1869,0,0,1867,1868,1869,1870,1871,1868,1869,1867,1868,1869,1870,1871,1868,1869,
+2148,2147,2148,2147,2148,2147,2148,2147,2148,2147,2148,2147,2148,2149,0,0,2154,2147,2148,2147,2148,2147,2148,2147,2148,2147,2148,2147,2148,2147,
 168,135,101,102,101,102,101,102,70,0,0,0,0,0,0,0,0,0,0,0,0,168,101,102,135,102,135,167,136,168,
 135,70,168,167,102,167,70,168,102,0,0,0,0,0,0,0,0,0,0,0,0,168,168,167,168,70,167,70,70,69,
 101,101,135,101,135,136,69,101,167,0,0,0,0,0,0,0,0,0,0,0,0,135,136,136,69,136,70,102,101,136,
@@ -99,11 +169,11 @@
 0,0,0,0,0,0,0,749,750,0,0,0,0,0,0,0,0,0,0,0,0,751,752,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,781,782,0,0,0,0,0,0,0,0,0,0,0,0,783,784,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,685,686,0,0,0,0,0,0,0,0,0,0,0,0,687,688,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,717,718,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,749,750,0,0,0,0,886,0,0,889,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,781,782,0,0,0,0,918,0,0,921,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,685,686,0,0,0,0,950,0,0,953,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,717,718,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,813,814,0,0,0,0,0,0,0,0,0,0,0,0,815,816,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,886,0,0,889,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,918,0,0,921,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,950,0,0,953,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,653,654,0,0,0,0,0,0,0,0,0,0,0,0,655,656,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,749,750,0,0,0,0,0,0,0,0,0,0,0,0,751,752,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,781,782,0,0,0,0,0,0,0,0,0,0,0,0,783,784,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,685,686,0,0,0,0,0,0,0,0,0,0,0,0,687,688,0,0,0,0,0,0,0,
