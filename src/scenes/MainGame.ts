@@ -36,6 +36,8 @@ export class MainGame extends Phaser.Scene {
     // Create Animated tile data
     this.handleCreateTilesData(map);
 
+    console.log(this.animatedTiles);
+
   };
 
   update() {
@@ -45,20 +47,34 @@ export class MainGame extends Phaser.Scene {
   // Animate tile function in main game for now.
 
   handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
-
     // Array of tiles
     this.animatedTiles = [];
     // Get ALL tiles First tileset in map
-    const tileData = map.tilesets[0].tileData;
+    const tileData = map.tilesets[1].tileData;
+    
+    for (const tileIdStr in tileData) {
+      const tileid = parseInt(tileIdStr, 10);
 
-    console.log(tileData);
+      // Go through map // I feel like something is off about the numbers here
+      map.forEachTile(tile => {
 
-    // For each tile with animation. Only want tiles within our current scene.
+        // No Data stored in -1 layers in json
+        if(tile.index === -1) {
+          return;
+        };
 
-    // 
-
+        // if tile id matches
+        if (tile.index - map.tilesets[1].firstgid === tileid) {
+          this.animatedTiles.push({
+            tile,
+            tileAnimationData: tileData[tileid].animation,
+            firstgid: map.tilesets[1].firstgid,
+            elapsedTime: 0,
+          });
+        };
+      });
+    };
   };
-
 
 };
 
