@@ -2,8 +2,8 @@ import Phaser, { Tilemaps } from "phaser";
 
 export class MainGame extends Phaser.Scene {
   // Variable Declaration.
-
-
+  // CS this find the type
+  public animatedTiles: any[] = [];
 
 
   constructor() {
@@ -33,19 +33,33 @@ export class MainGame extends Phaser.Scene {
     map.createLayer('Path', all_tiles);
     map.createLayer('Walls', all_tiles);
     
+    // Create Animated tile data
+    this.handleCreateTilesData(map);
+
   };
 
   update() {
 
   };
 
+  // Animate tile function in main game for now.
+
+  handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
+
+    // Array of tiles
+    this.animatedTiles = [];
+    // Get ALL tiles First tileset in map
+    const tileData = map.tilesets[0].tileData;
+
+    console.log(tileData);
+
+    // For each tile with animation. Only want tiles within our current scene.
+
+    // 
+
+  };
+
+
 };
 
 
- // Create tile set
-//  const map = this.make.tilemap({ key: 'dungeon'})
-//  const tileset = map.addTilesetImage('Dungeon Prison', 'tiles', 16, 16, 1, 2)
-
-//  map.createLayer('Ground', tileset);
-//  const wallsLayer = map.createLayer('Walls', tileset)
-//  wallsLayer.setCollisionByProperty({ collides: true})
