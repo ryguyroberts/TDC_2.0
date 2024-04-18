@@ -1,6 +1,11 @@
 import Phaser, { Tilemaps } from "phaser";
 
 export class MainGame extends Phaser.Scene {
+  // Variable Declaration.
+
+
+
+
   constructor() {
     super('main_game');
   };
@@ -30,7 +35,9 @@ export class MainGame extends Phaser.Scene {
     
   };
 
+  update() {
 
+  };
 
 };
 

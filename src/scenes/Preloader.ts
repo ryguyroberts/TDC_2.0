@@ -23,3 +23,9 @@ export class Preloader extends Phaser.Scene {
 };
 
 
+// Example Preload
+//   this.load.image('tileset', tileset);
+//   this.load.tilemapTiledJSON('tilemap', tilemap);
+
+
+
