@@ -1,8 +1,27 @@
 import Phaser, { Tilemaps } from "phaser";
 
+  // Interfaces
+
+interface TileAnimationFrame {
+  tileid: number;
+  duration: number;
+}
+
+interface TileAnimationData {
+  animation: TileAnimationFrame[];
+}
+
+interface TilesetData {
+  [tileid: number]: TileAnimationData;
+}
+
 export class MainGame extends Phaser.Scene {
+  // Interfaces
+  
+
   // Variable Declaration.
-  // CS this find the type
+
+    // CS this find the type
   public animatedTiles: any[] = [];
 
 
@@ -36,45 +55,89 @@ export class MainGame extends Phaser.Scene {
     // Create Animated tile data
     this.handleCreateTilesData(map);
 
-    console.log(this.animatedTiles);
-
   };
 
   update() {
+  
 
   };
 
-  // Animate tile function in main game for now.
-
-  handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
-    // Array of tiles
+    handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
+    // Ensure that the second tileset exists
+    if (map.tilesets.length < 2) {
+      console.error("The map does not contain enough tilesets.");
+      return;
+    }
+  
+    // Array of animated tiles
     this.animatedTiles = [];
-    // Get ALL tiles First tileset in map
-    const tileData = map.tilesets[1].tileData;
-    
+  
+    // Get tile data from the second tileset
+    const tileData = map.tilesets[1].tileData as unknown as TilesetData;
+    const firstgid = map.tilesets[1].firstgid;
+  
     for (const tileIdStr in tileData) {
       const tileid = parseInt(tileIdStr, 10);
-
-      // Go through map // I feel like something is off about the numbers here
+  
+      // Check if the tile has animation data
+      if (!tileData[tileid].animation) continue;
+  
+      // Iterate over all tiles in the map
       map.forEachTile(tile => {
-
-        // No Data stored in -1 layers in json
-        if(tile.index === -1) {
-          return;
-        };
-
-        // if tile id matches
-        if (tile.index - map.tilesets[1].firstgid === tileid) {
+        // Skip empty tiles
+        if (tile.index === -1) return;
+  
+        // Check if the tile index matches the tileid (adjusted for firstgid)
+        if (tile.index - firstgid === tileid) {
           this.animatedTiles.push({
             tile,
             tileAnimationData: tileData[tileid].animation,
-            firstgid: map.tilesets[1].firstgid,
+            firstgid,
             elapsedTime: 0,
           });
-        };
+        }
       });
-    };
+    }
+
+    console.log(this.animatedTiles);
   };
+
+ 
+  
+  // Animate tile function in main game for now.
+
+  // handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
+  //   // Array of tiles
+  //   this.animatedTiles = [];
+  //   // Get ALL tiles First tileset in map
+
+    
+  //   const tileData = map.tilesets[1].tileData;
+    
+  //   console.log(tileData);
+  //   for (const tileIdStr in tileData) {
+  //     const tileid = parseInt(tileIdStr, 10);
+
+  //     // Go through map // I feel like something is off about the numbers here
+  //     map.forEachTile(tile => {
+
+  //       // No Data stored in -1 layers in json
+  //       if(tile.index === -1) {
+  //         return;
+  //       };
+
+  //       // if tile id matches
+  //       if (tile.index - map.tilesets[1].firstgid === tileid) {
+  //         this.animatedTiles.push({
+  //           tile,
+  //           tileAnimationData: tileData[tileid].animation,
+  //           firstgid: map.tilesets[1].firstgid,
+  //           elapsedTime: 0,
+  //         });
+  //       };
+  //     });
+  //   };
+  // };
 
 };
 
