@@ -20,6 +20,7 @@ export class MainGame extends Phaser.Scene {
   
 
   // Variable Declaration.
+  private animationSpeedMultiplier: number = 0.6;
 
   // Shouldn't be just any.
   public animatedTiles: any[] = [];
@@ -60,11 +61,12 @@ export class MainGame extends Phaser.Scene {
 
   };
 
-  update(t: number , d: number) {
-  
-    this.handleAnimateTiles(16)
+  update(t: number, d: number) {
+    
+    this.handleAnimateTiles(d)
 
   };
+
 
 
   // Create array of animated tiles from TileMap
@@ -113,7 +115,11 @@ export class MainGame extends Phaser.Scene {
 
   // Create constant loop of tiles. 
 
+  // For testing
+
   private handleAnimateTiles(delta: number) {
+    delta *= this.animationSpeedMultiplier;
+
     this.animatedTiles.forEach(tile => {
       if (!tile.tileAnimationData) return;
       
