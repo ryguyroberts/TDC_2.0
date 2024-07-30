@@ -46,7 +46,7 @@ export class MainGame extends Phaser.Scene {
       throw new Error('Failed to load tileset(s)');
     };
 
-    const all_tiles: Tilemaps.Tileset[] = [tileset_anim_water, tileset_grass];
+    const all_tiles: Tilemaps.Tileset[] = [tileset_grass, tileset_anim_water];
 
     map.createLayer('Ground', all_tiles);
     map.createLayer('Path', all_tiles);
@@ -54,6 +54,7 @@ export class MainGame extends Phaser.Scene {
     
     // Create Animated tile data
     this.handleCreateTilesData(map);
+    console.log(map);
 
   };
 
@@ -75,31 +76,42 @@ export class MainGame extends Phaser.Scene {
     // Get tile data from the second tileset
     const tileData = map.tilesets[1].tileData as unknown as TilesetData;
     const firstgid = map.tilesets[1].firstgid;
+    console.log(firstgid);
   
+    // Each animated tile in Water set. 
     for (const tileIdStr in tileData) {
+
+      // Tile ID needs to be inflated to match Global ID
       const tileid = parseInt(tileIdStr, 10);
   
       // Check if the tile has animation data
       if (!tileData[tileid].animation) continue;
-  
+
+      // Calculate Global Tile ID
+      // const globalTileId = firstgid + tileid;
+      // console.log(`Found animated tile data for local tile ID: ${tileid}, global tile ID: ${globalTileId}`);
+
+
       // Iterate over all tiles in the map
       map.forEachTile(tile => {
         // Skip empty tiles
+        console.log(tile)
         if (tile.index === -1) return;
-  
-        // Check if the tile index matches the tileid (adjusted for firstgid)
-        if (tile.index - firstgid === tileid) {
-          this.animatedTiles.push({
-            tile,
-            tileAnimationData: tileData[tileid].animation,
-            firstgid,
-            elapsedTime: 0,
-          });
-        }
+        // console.log(`Tile index: ${tile.index}, Expected Global Tile ID: ${tileid}`);
+        // Check if the tile index matches the Global Tile ID
+        // if (tile.index === tileid) {
+        //   this.animatedTiles.push({
+        //     tile,
+        //     tileAnimationData: tileData[tileid].animation,
+        //     firstgid,
+        //     elapsedTime: 0,
+        //   });
+        // }
       });
+       console.log(this.animatedTiles);
     }
 
-    console.log(this.animatedTiles);
+  
   };
 
  
