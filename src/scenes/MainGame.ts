@@ -1,4 +1,4 @@
-import Phaser, { Tilemaps } from "phaser";
+import Phaser, { Tilemaps, } from "phaser";
 
   // Interfaces
 
@@ -21,7 +21,7 @@ export class MainGame extends Phaser.Scene {
 
   // Variable Declaration.
 
-    // CS this find the type
+  // Shouldn't be just any.
   public animatedTiles: any[] = [];
 
 
@@ -54,35 +54,40 @@ export class MainGame extends Phaser.Scene {
     
     // Create Animated tile data
     this.handleCreateTilesData(map);
-    // console.log(map);
+
+    // console.log(this.animatedTiles);
+
 
   };
 
-  update() {
+  update(t: number , d: number) {
   
+    this.handleAnimateTiles(16)
 
   };
 
-    handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
-    // Ensure that the second tileset exists
-    if (map.tilesets.length < 2) {
-      console.error("The map does not contain enough tilesets.");
-      return;
-    }
-  
-    // Array of animated tiles
-    this.animatedTiles = [];
-  
-    // Get tile data from the second tileset (Which has animated tiles)
-    const tileData = map.tilesets[1].tileData as unknown as TilesetData;
-    const firstgid = map.tilesets[1].firstgid;
-  
-    // Each animated tile in Water set. 
+
+  // Create array of animated tiles from TileMap
+  private handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
+  // Ensure that the second tileset exists
+  if (map.tilesets.length < 2) {
+    console.error("The map does not contain enough tilesets.");
+    return;
+  }
+
+  // Array of animated tiles  
+  this.animatedTiles = [];
+
+  // Get tile data from the second tileset (Which has animated tiles)
+  const tileData = map.tilesets[1].tileData as unknown as TilesetData;
+  const firstgid = map.tilesets[1].firstgid;
+
+  // Each animated tile in Water set. 
     for (const tileIdStr in tileData) {
 
       // Tile ID needs to be inflated to match Global ID
       const tileid = parseInt(tileIdStr, 10);
-  
+
       // Check if the tile has animation data
       if (!tileData[tileid].animation) continue;
 
@@ -104,10 +109,27 @@ export class MainGame extends Phaser.Scene {
         }
       }, undefined, undefined, undefined, undefined, undefined, undefined, 'Ground');
     }
-    console.log(this.animatedTiles);
-  
   };
-  
- };
+
+  // Create constant loop of tiles. 
+
+  private handleAnimateTiles(delta: number) {
+    this.animatedTiles.forEach(tile => {
+      if (!tile.tileAnimationData) return;
+      
+      // Total Animation Duration of each tile
+      let animationDuration = tile.tileAnimationData[0].duration * tile.tileAnimationData.length;
+
+      // Check elapased Game time
+      tile.elapsedTime += delta;
+      tile.elapsedTime %= animationDuration;
+      const animationFrameIndex = Math.floor(tile.elapsedTime / tile.tileAnimationData[0].duration);
+
+      // Change to next tile on the list
+      tile.tile.index = tile.tileAnimationData[animationFrameIndex].tileid + tile.firstgid
+    });
+  };
+
+};
 
 
