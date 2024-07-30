@@ -68,7 +68,6 @@ export class MainGame extends Phaser.Scene {
   };
 
 
-
   // Create array of animated tiles from TileMap
   private handleCreateTilesData(map: Phaser.Tilemaps.Tilemap) {
   // Ensure that the second tileset exists
@@ -114,9 +113,6 @@ export class MainGame extends Phaser.Scene {
   };
 
   // Create constant loop of tiles. 
-
-  // For testing
-
   private handleAnimateTiles(delta: number) {
     delta *= this.animationSpeedMultiplier;
 
